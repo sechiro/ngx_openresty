@@ -61,8 +61,7 @@ rm -rf $RPM_BUILD_ROOT
 #%doc
 
 %changelog
-* Wed Aug 24 2011 liseen <liseen.wan@gmail.com>
-  initial packaging
-
 * Sat Aug 30 2014 Ishida, Seiichiro <ishida.seiichiro@gmail.com>
   update spec file
+* Wed Aug 24 2011 liseen <liseen.wan@gmail.com>
+  initial packaging
