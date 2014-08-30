@@ -5,5 +5,5 @@ How to make rpm
 yum install rpmdevtools
 rpmdev-setuptree
 
-A_RPATHS=0x0002 rpmbuild -bb specs/ngx_openresty.spec
+QA_RPATHS=0x0002 rpmbuild -bb specs/ngx_openresty.spec
 ```
