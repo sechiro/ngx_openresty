@@ -6,15 +6,14 @@
 
 Name:		ngx_openresty
 
-Version:	1.0.5.1
-Release:	5
+Version:	1.7.2.1
 Summary:	nginx for openresty
 
 Group:		Productivity/Networking/Web/Servers
 License:	BSD
 URL:		http://www.openresty.org/
 
-Source0:	ngx_openresty-%{version}rc%{release}.tar.gz
+Source0:	ngx_openresty-%{version}.tar.gz
 
 BuildRoot:	%{build_root}
 
@@ -26,14 +25,15 @@ Requires:	openssl, pcre, readline
 OpenResty (aka. ngx_openresty) is a full-fledged web application server by bundling the standard Nginx core, lots of 3rd-party Nginx modules, as well as most of their external dependencie
 
 %prep
-#%setup -q -n ngx_openresty-%{version}
-%setup -q -n ngx_openresty-%{version}rc%{release}
+%setup -q -n ngx_openresty-%{version}
 
 %build
             #--with-pg_config=opt/pg90/bin/pg_config \
             #--with-luajit \
 ./configure --prefix=%{resty_prefix}/%{dir_name} \
-            --with-http_postgres_module
+            --with-http_postgres_module \
+            --with-luajit \
+            --with-http_gzip_static_module
 
 make %{?_smp_mflags}
 
@@ -64,5 +64,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Wed Aug 24 2011 liseen <liseen.wan@gmail.com>
-- initial packaging
+  initial packaging
 
