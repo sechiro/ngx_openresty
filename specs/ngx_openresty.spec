@@ -1,4 +1,4 @@
-%define         resty_prefix     /opt/
+%define         resty_prefix     /opt
 %define         resty_user       nobody
 %define         resty_group      nobody
 
@@ -7,6 +7,7 @@
 Name:		ngx_openresty
 
 Version:	1.7.2.1
+Release:	1
 Summary:	nginx for openresty
 
 Group:		Productivity/Networking/Web/Servers
@@ -28,10 +29,7 @@ OpenResty (aka. ngx_openresty) is a full-fledged web application server by bundl
 %setup -q -n ngx_openresty-%{version}
 
 %build
-            #--with-pg_config=opt/pg90/bin/pg_config \
-            #--with-luajit \
 ./configure --prefix=%{resty_prefix}/%{dir_name} \
-            --with-http_postgres_module \
             --with-luajit \
             --with-http_gzip_static_module
 
@@ -43,7 +41,7 @@ make install DESTDIR=$RPM_BUILD_ROOT
 cur_dir=`pwd`
 
 cd $RPM_BUILD_ROOT%{resty_prefix}/%{dir_name}/nginx/ && \
-    mkdir client_body_temp fastcgi_temp proxy_temp
+    mkdir -p client_body_temp fastcgi_temp proxy_temp
 
 cd $RPM_BUILD_ROOT && (find . -type f | sed -e 's|^./|/|g' > $cur_dir/%{name}.manifest)
 cd $RPM_BUILD_ROOT && (find . -type l | sed -e 's|^./|/|g' >> $cur_dir/%{name}.manifest)
@@ -66,3 +64,5 @@ rm -rf $RPM_BUILD_ROOT
 * Wed Aug 24 2011 liseen <liseen.wan@gmail.com>
   initial packaging
 
+* Sat Aug 30 2014 Ishida, Seiichiro <ishida.seiichiro@gmail.com>
+  update spec file
